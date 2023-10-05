@@ -1,5 +1,8 @@
-import { ObjectLiteral } from 'typeorm';
+import { ObjectLiteral, SelectQueryBuilder } from 'typeorm';
 
+export type QueryHook<Entity> = (
+    qb: SelectQueryBuilder<Entity>,
+) => Promise<SelectQueryBuilder<Entity>>;
 export interface PaginateMeta {
     itemCount: number;
     totalItems?: number;
