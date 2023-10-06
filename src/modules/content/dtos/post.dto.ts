@@ -50,6 +50,14 @@ export class QueryPostDto implements PaginateOptions {
     @IsNumber()
     @IsOptional()
     limit = 10;
+
+    @IsUUID(undefined, { message: 'ID格式错误' })
+    @IsOptional()
+    category?: string;
+
+    @IsUUID(undefined, { message: 'ID格式错误' })
+    @IsOptional()
+    tag?: string;
 }
 
 /**
@@ -94,6 +102,23 @@ export class CreatePostDto {
     @IsNumber(undefined, { always: true })
     @IsOptional({ always: true })
     customOrder = 0;
+
+    @IsUUID(undefined, {
+        each: true,
+        always: true,
+        message: 'ID格式不正确',
+    })
+    @IsOptional({ groups: ['update'] })
+    category: string;
+
+    @IsUUID(undefined, {
+        each: true,
+        always: true,
+        message: 'ID格式不正确',
+    })
+    @IsNotEmpty({ groups: ['create'], message: '分类必须设置' })
+    @IsOptional({ always: true })
+    tags?: string[];
 }
 
 /**
