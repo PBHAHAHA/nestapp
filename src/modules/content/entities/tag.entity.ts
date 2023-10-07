@@ -15,7 +15,7 @@ export class TagEntity extends BaseEntity {
     name: string;
 
     @Expose()
-    @Column({ comment: '标签描述' })
+    @Column({ comment: '标签描述', nullable: true })
     description?: string;
 
     @ManyToMany(() => PostEntity, (post) => post.tags)
