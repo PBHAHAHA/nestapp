@@ -10,7 +10,6 @@ import {
     Query,
     SerializeOptions,
     UseInterceptors,
-    ValidationPipe,
 } from '@nestjs/common';
 
 import { AppIntercepter } from '@/modules/core/providers';
@@ -26,15 +25,7 @@ export class PostController {
     @Get()
     @SerializeOptions({ groups: ['post-list'] })
     async list(
-        @Query(
-            new ValidationPipe({
-                transform: true,
-                whitelist: true,
-                forbidNonWhitelisted: true,
-                forbidUnknownValues: true,
-                validationError: { target: false },
-            }),
-        )
+        @Query()
         options: QueryPostDto,
     ) {
         console.log(options);
@@ -50,16 +41,7 @@ export class PostController {
     @Post()
     @SerializeOptions({ groups: ['post-detail'] })
     async store(
-        @Body(
-            new ValidationPipe({
-                transform: true,
-                whitelist: true,
-                forbidNonWhitelisted: true,
-                forbidUnknownValues: true,
-                validationError: { target: false },
-                groups: ['create'],
-            }),
-        )
+        @Body()
         data: CreatePostDto,
     ) {
         return this.postService.create(data);
@@ -69,16 +51,7 @@ export class PostController {
     @Patch()
     @SerializeOptions({ groups: ['post-detail'] })
     async update(
-        @Body(
-            new ValidationPipe({
-                transform: true,
-                whitelist: true,
-                forbidNonWhitelisted: true,
-                forbidUnknownValues: true,
-                validationError: { target: false },
-                groups: ['update'],
-            }),
-        )
+        @Body()
         data: UpdatePostDto,
     ) {
         return this.postService.update(data);

@@ -53,16 +53,7 @@ export class TagController {
     @Post()
     @SerializeOptions({})
     async store(
-        @Body(
-            new ValidationPipe({
-                transform: true,
-                whitelist: true,
-                forbidNonWhitelisted: true,
-                forbidUnknownValues: true,
-                validationError: { target: false },
-                groups: ['create'],
-            }),
-        )
+        @Body()
         data: CreateTagDto,
     ) {
         return this.service.create(data);
@@ -71,16 +62,7 @@ export class TagController {
     @Patch()
     @SerializeOptions({})
     async update(
-        @Body(
-            new ValidationPipe({
-                transform: true,
-                whitelist: true,
-                forbidNonWhitelisted: true,
-                forbidUnknownValues: true,
-                validationError: { target: false },
-                groups: ['update'],
-            }),
-        )
+        @Body()
         data: UpdateTagDto,
     ) {
         return this.service.update(data);

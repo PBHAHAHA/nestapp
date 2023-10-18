@@ -4,6 +4,7 @@ import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 
 import { AppModule } from './app.module';
+import { TransformInterceptor } from './modules/core/providers/transform.interceptor';
 
 async function bootstrap() {
     // 使用fastify驱动
@@ -15,6 +16,7 @@ async function bootstrap() {
     });
     // 设置全局访问前缀
     app.setGlobalPrefix('api');
+    app.useGlobalInterceptors(new TransformInterceptor());
     // 启动后的输出
     await app.listen(3100, () => {
         console.log('api: http://localhost:3100');
