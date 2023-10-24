@@ -14,6 +14,7 @@ export function isMatchPhone(
     if (!value) return false;
     const phoneArr: string[] = value.split('.');
     if (phoneArr.length !== 2) return false;
+    console.log(123);
     return isMobilePhone(phoneArr.join(''), locale, options);
 }
 
