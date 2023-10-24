@@ -16,6 +16,7 @@ async function bootstrap() {
     });
     // 设置全局访问前缀
     app.setGlobalPrefix('api');
+    // app.useGlobalGuards(new LoginGuard());
     app.useGlobalInterceptors(new TransformInterceptor());
     // 启动后的输出
     await app.listen(3100, () => {

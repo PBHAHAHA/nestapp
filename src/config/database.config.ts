@@ -6,7 +6,7 @@ import { resolve } from 'path';
 
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-export const database = (): TypeOrmModuleOptions => ({
+export const sqliteDatabase = (): TypeOrmModuleOptions => ({
     // 以下为mysql配置
     // charset: 'utf8mb4',
     // logging: ['error'],
@@ -21,4 +21,17 @@ export const database = (): TypeOrmModuleOptions => ({
     database: resolve(__dirname, '../../database.db'),
     synchronize: true,
     autoLoadEntities: true,
+});
+export const mysqlDatabase = (): TypeOrmModuleOptions => ({
+    type: 'mysql',
+    host: 'localhost',
+    port: 3306,
+    username: 'root',
+    password: 'Jcx95126',
+    database: '3R',
+    synchronize: true,
+    logging: true,
+    autoLoadEntities: true,
+    poolSize: 10,
+    connectorPackage: 'mysql2',
 });
