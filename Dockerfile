@@ -1,4 +1,4 @@
-FROM daocloud.io/library/node:16.18.0
+FROM node:16.18.0
 
 # 设置时区
 ENV TZ=Asia/Shanghai \
