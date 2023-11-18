@@ -1,31 +1,15 @@
-version: "3.0"
-
 services:
-    mysql:
-        container_name: mysql
-        image: mysql:8.0.20
-        ports:
-            - 3307:3306 #本机端口：容器端口
-        restart: on-failure
-        environment:
-            - MYSQL_ROOT_PASSWORD=Jcx95126
-        volumes:
-            - ./deploy/mysql/db:/var/lib/mysql
-            - ./deploy/mysql/conf/my.cnf:/etc/my.cnf
-            - ./deploy/mysql/init:/docker-entrypoint-initdb.d/ # 存放初始化的脚本
-        networks: 
-            - my-server
-    server: # egg服务
-             container_name: server
-             build: # 根据Dockerfile构建镜像
-                context: .
-                dockerfile: Dockerfile
-             ports: 
-                - 9000:9000
-             restart: on-failure # 设置自动重启，这一步必须设置，主要是存在mysql还没有启动完成就启动了node服务
-             networks: 
-                    - my-server
-             depends_on: # node服务依赖于mysql和redis
-                    - mysql
-networks:
-    my-server:
+  nest-app:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    depends_on:
+      - mysql-container
+    ports:
+      - '3100:3100'
+  mysql-container:
+    image: mysql
+    ports:
+      - '3306:3306'
+    volumes:
+      - ~/datas/data-mysql:/var/lib/mysql
