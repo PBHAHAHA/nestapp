@@ -1,4 +1,5 @@
-FROM node:16.18.0
+# build stage 打包阶段
+FROM node:16.18.0 as build-stage
 
 # 创建工作目录
 # RUN mkdir -p /app
@@ -21,6 +22,16 @@ COPY . .
 # 打包
 RUN npm run build
 
+# production stage 生产阶段
+FROM node:16.18.0 as production-stage
+
+COPY --from=build-stage /app/dist /app
+COPY --from=build-stage /app/package.json /app/package.json
+WORKDIR /app
+
+RUN npm install --production
+
+# 端口映射
 EXPOSE 9000
 
 VOLUME /app
