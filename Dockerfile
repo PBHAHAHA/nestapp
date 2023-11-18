@@ -32,7 +32,7 @@ WORKDIR /app
 RUN npm install --production
 
 # 端口映射
-EXPOSE 9000
+EXPOSE 3100
 
 VOLUME /app
 # 启动服务

@@ -28,7 +28,7 @@ export const mysqlDatabase = (): TypeOrmModuleOptions => ({
     username: 'root',
     password: 'Jcx95126',
     database: '3R',
-    // synchronize: true,
+    synchronize: true,
     logging: true,
     autoLoadEntities: true,
     poolSize: 10,
