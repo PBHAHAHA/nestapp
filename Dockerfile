@@ -23,7 +23,7 @@ COPY . .
 RUN npm run build
 
 # production stage 生产阶段
-FROM node:16.18.0-3.14 as production-stage
+FROM node:16.18.0-alpine3.14 as production-stage
 
 COPY --from=build-stage /app/dist /app
 COPY --from=build-stage /app/package.json /app/package.json
