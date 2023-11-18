@@ -109,7 +109,7 @@ export class CreatePostDto {
     @IsUUID(undefined, {
         each: true,
         always: true,
-        message: 'ID格式不正确',
+        message: '分类ID格式不正确',
     })
     @IsOptional({ groups: ['update'] })
     category: string;
@@ -117,7 +117,7 @@ export class CreatePostDto {
     @IsUUID(undefined, {
         each: true,
         always: true,
-        message: 'ID格式不正确',
+        message: '标签ID格式不正确',
     })
     @IsNotEmpty({ groups: ['create'], message: '分类必须设置' })
     @IsOptional({ always: true })
