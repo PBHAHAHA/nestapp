@@ -2,34 +2,33 @@
 /**
  * 数据库配置
  */
-import { resolve } from 'path';
 
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-export const sqliteDatabase = (): TypeOrmModuleOptions => ({
-    // 以下为mysql配置
-    // charset: 'utf8mb4',
-    // logging: ['error'],
-    // type: 'mysql',
-    // host: '127.0.0.1',
-    // port: 3306,
-    // username: 'root',
-    // password: '12345678',
-    // database: '3r',
-    // 以下为sqlite配置
-    type: 'better-sqlite3',
-    database: resolve(__dirname, '../../database.db'),
-    synchronize: true,
-    autoLoadEntities: true,
-});
+// export const sqliteDatabase = (): TypeOrmModuleOptions => ({
+//     // 以下为mysql配置
+//     // charset: 'utf8mb4',
+//     // logging: ['error'],
+//     // type: 'mysql',
+//     // host: '127.0.0.1',
+//     // port: 3306,
+//     // username: 'root',
+//     // password: '12345678',
+//     // database: '3r',
+//     // 以下为sqlite配置
+//     type: 'better-sqlite3',
+//     database: resolve(__dirname, '../../database.db'),
+//     synchronize: true,
+//     autoLoadEntities: true,
+// });
 export const mysqlDatabase = (): TypeOrmModuleOptions => ({
     type: 'mysql',
-    host: 'localhost',
+    host: 'mysql',
     port: 3306,
     username: 'root',
     password: 'Jcx95126',
     database: '3R',
-    synchronize: true,
+    // synchronize: true,
     logging: true,
     autoLoadEntities: true,
     poolSize: 10,
