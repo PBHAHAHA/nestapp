@@ -34,7 +34,7 @@ RUN npm install --production
 # 端口映射
 EXPOSE 3100
 
-VOLUME /app
+# VOLUME /app
 # 启动服务
 # "start:prod": "cross-env NODE_ENV=production node ./dist/src/main.js",
 CMD ["node" , "./dist/main.js"]
