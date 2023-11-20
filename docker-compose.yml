@@ -1,3 +1,4 @@
+version: '3.8'
 services:
   nest-app:
     build:
@@ -7,9 +8,16 @@ services:
       - mysql-container
     ports:
       - '3100:3100'
+    networks:
+      - common-network
   mysql-container:
     image: mysql
     ports:
       - '3306:3306'
     volumes:
-      - ~/datas/data-mysql:/var/lib/mysql
+      - /root/datas/data-mysql:/var/lib/mysql
+    networks:
+      - common-network
+networks:
+    common-network:
+      driver: bridge
