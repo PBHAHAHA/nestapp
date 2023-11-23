@@ -19,7 +19,7 @@ async function bootstrap() {
     // app.useGlobalGuards(new LoginGuard());
     app.useGlobalInterceptors(new TransformInterceptor());
     // 启动后的输出
-    await app.listen(3100, () => {
+    await app.listen(3100, '0.0.0.0', () => {
         console.log('api: http://localhost:3100');
     });
 }
