@@ -22,11 +22,15 @@ COPY . .
 # 打包
 RUN npm run build
 
+RUN npm install -g pm2
+
 # 端口映射
 EXPOSE 3100
 
 # VOLUME /app
 # 启动服务
 # "start:prod": "cross-env NODE_ENV=production node ./dist/src/main.js",
-CMD ["node" , "./dist/main.js"]
+# CMD ["node" , "./dist/main.js"]
+
+CMD ["pm2-runtime", "./dist/main.js"]
 

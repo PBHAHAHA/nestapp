@@ -18,6 +18,8 @@ services:
       - /root/datas/data-mysql:/var/lib/mysql
     networks:
       - common-network
+    environment:
+      - MYSQL_ROOT_PASSWORD=Jcx95126
 networks:
     common-network:
       driver: bridge
