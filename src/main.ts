@@ -5,6 +5,7 @@ import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify
 
 import { AppModule } from './app.module';
 import { TransformInterceptor } from './modules/core/providers/transform.interceptor';
+import { useContainer } from 'class-validator';
 
 async function bootstrap() {
     // 使用fastify驱动
@@ -18,6 +19,9 @@ async function bootstrap() {
     app.setGlobalPrefix('api');
     // app.useGlobalGuards(new LoginGuard());
     app.useGlobalInterceptors(new TransformInterceptor());
+    useContainer(app.select(AppModule), {
+        fallbackOnErrors: true,
+    })
     // 启动后的输出
     await app.listen(3100, () => {
         console.log('api: http://localhost:3100');

@@ -7,7 +7,8 @@ export const paginate = async <E extends ObjectLiteral>(
     qb: SelectQueryBuilder<E>,
     options: PaginateOptions,
 ): Promise<PaginateReturn<E>> => {
-    const limit = isNil(options.limit) || options.limit < 1 ? 1 : options.limit;
+    // 默认值
+    const limit = isNil(options.limit) || options.limit < 1 ? 10 : options.limit;
     const page = isNil(options.page) || options.page < 1 ? 1 : options.page;
     const start = page >= 1 ? page - 1 : 0;
     const totalItems = await qb.getCount();

@@ -43,22 +43,12 @@ export class AppFilter<T = Error> extends BaseExceptionFilter<T> {
                 status = resException.status;
             }
         }
-        // const message = isObject(res)
-        //     ? res
-        //     : {
-        //           statusCode: status,
-        //           message: res,
-        //       };
-        let message;
-        if (isObject(res)) {
-            message = 'message' in res ? res.message : '';
-        } else {
-            message = res;
-        }
-        const response = {
-            code: status, // 使用状态码作为 code 属性的值
-            message, // 使用响应内容作为 message 属性的值
-        };
+        const response = isObject(res)
+            ? res
+            : {
+                  statusCode: status,
+                  message: res,
+              };
         applicationRef!.reply(host.getArgByIndex(1), response, status);
     }
 }

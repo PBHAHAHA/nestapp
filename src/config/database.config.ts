@@ -23,12 +23,12 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 // });
 export const mysqlDatabase = (): TypeOrmModuleOptions => ({
     type: 'mysql',
-    host: 'mysql-container',
+    host: '127.0.0.1',
     port: 3306,
     username: 'root',
-    password: 'Jcx95126',
+    password: '123456',
     database: '3R',
-    synchronize: true,
+    synchronize: false,
     logging: true,
     autoLoadEntities: true,
     poolSize: 10,

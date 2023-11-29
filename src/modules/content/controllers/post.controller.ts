@@ -28,7 +28,7 @@ export class PostController {
         @Query()
         options: QueryPostDto,
     ) {
-        console.log(options);
+        // console.log(options);
         return this.postService.paginate(options);
     }
 
