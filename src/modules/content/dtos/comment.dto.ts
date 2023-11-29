@@ -53,16 +53,13 @@ export class QueryCommentTreeDto extends PickType(QueryCommentDto, ['post']) {}
 /**
  * 评论添加验证
  */
-@DtoValidation({groups: ['create']})
+@DtoValidation()
 export class CreateCommentDto {
     @MaxLength(1000, { message: '评论内容不能超过$constraint1个字' })
     @IsNotEmpty({ message: '评论内容不能为空' })
     body: string;
 
-    @IsDataExist(PostEntity, {
-        always: true,
-        message: '文章不存在',
-    })
+
     @IsUUID(undefined, { message: 'ID格式错误' })
     @IsDefined({ message: 'ID必须指定' })
     post: string;

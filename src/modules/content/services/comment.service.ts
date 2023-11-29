@@ -2,7 +2,7 @@
 
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { isNil } from 'lodash';
-import { EntityNotFoundError, SelectQueryBuilder } from 'typeorm';
+import { EntityNotFoundError, In, SelectQueryBuilder } from 'typeorm';
 
 import { treePaginate } from '@/modules/database/helpers';
 
@@ -39,6 +39,7 @@ export class CommentService {
      */
     async paginate(dto: QueryCommentDto) {
         const { post, ...query } = dto;
+        console.log(post, query,"xxxx")
         const addQuery = (qb: SelectQueryBuilder<CommentEntity>) => {
             const condition: Record<string, string> = {};
             if (!isNil(post)) condition.post = post;
@@ -82,9 +83,9 @@ export class CommentService {
      * 删除评论
      * @param id
      */
-    async delete(id: string) {
-        const comment = await this.repository.findOneOrFail({ where: { id: id ?? null } });
-        return this.repository.remove(comment);
+    async delete(ids: string[]) {
+        const comments = await this.repository.find({ where: { id: In(ids) } });
+        return this.repository.remove(comments);
     }
 
     /**

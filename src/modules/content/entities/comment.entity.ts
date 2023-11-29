@@ -28,7 +28,7 @@ export class CommentEntity extends BaseEntity {
 
     @Expose()
     @CreateDateColumn({ comment: '评论时间' })
-    createAt: Date;
+    createdAt: Date;
 
     @Expose()
     @ManyToOne(() => PostEntity, (post) => post.comments, {

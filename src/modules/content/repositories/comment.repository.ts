@@ -46,6 +46,7 @@ export class CommentRepository extends TreeRepository<CommentEntity> {
         const { addQuery, ...rest } = options;
         const escapeAlias = (alias: string) => this.manager.connection.driver.escape(alias);
         const escapeColumn = (column: string) => this.manager.connection.driver.escape(column);
+        console.log(escapeAlias,escapeColumn,"aaaaaa")
 
         const joinColumn = this.metadata.treeParentRelation!.joinColumns[0];
         const parentPropertyName = joinColumn.givenDatabaseName || joinColumn.databaseName;
